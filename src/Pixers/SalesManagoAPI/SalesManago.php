@@ -2,6 +2,7 @@
 
 namespace Pixers\SalesManagoAPI;
 
+use Pixers\SalesManagoAPI\Client;
 use Pixers\SalesManagoAPI\Service;
 
 /**
