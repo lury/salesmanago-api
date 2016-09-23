@@ -48,6 +48,6 @@ class TaskService extends AbstractService
      */
     public function delete($taskId)
     {
-        return $this->create($taskId, null, true);
+        return $this->create(array(), $taskId, true);
     }
 }
