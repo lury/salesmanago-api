@@ -11,15 +11,18 @@ class TaskService extends AbstractService
      * Create new task.
      *
      * @param  array $data Task data
+     * @param bool   $taskId
+     * @param bool   $finished
+     *
      * @return array
      */
-    public function create(array $data)
+    public function create(array $data, $taskId = false, $finished = false)
     {
         $data = self::mergeData($data, [
-            'finished' => false,
-            'smContactTaskReq' => [
-                'id' => false,
-            ],
+          'finished' => $finished,
+          'smContactTaskReq' => [
+            'id' => $taskId,
+          ],
         ]);
 
         return $this->client->doPost('contact/updateTask', $data);
@@ -34,14 +37,7 @@ class TaskService extends AbstractService
      */
     public function update($taskId, array $data)
     {
-        $data = self::mergeData($data, [
-            'finished' => false,
-            'smContactTaskReq' => [
-                'id' => $taskId,
-            ],
-        ]);
-
-        return $this->client->doPost('contact/updateTask', $data);
+        return $this->create($data, $taskId);
     }
 
     /**
@@ -52,11 +48,6 @@ class TaskService extends AbstractService
      */
     public function delete($taskId)
     {
-        return $this->client->doPost('contact/updateTask', [
-            'finished' => true,
-            'smContactTaskReq' => [
-                'id' => $taskId,
-            ],
-        ]);
+        return $this->create($taskId, null, true);
     }
 }
