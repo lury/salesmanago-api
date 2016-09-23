@@ -13,12 +13,14 @@ class CouponService extends AbstractService
      * @param  string $owner Contact owner e-mail address
      * @param  string $email Contact e-mail address
      * @param  array  $data  Client data
+     *
+     * @return array
      */
     public function create($owner, $email, array $data)
     {
         $data = self::mergeData($data, [
-            'owner' => $owner,
-            'email' => $email,
+          'owner' => $owner,
+          'email' => $email,
         ]);
 
         return $this->client->doPost('contact/addContactCoupon', $data);

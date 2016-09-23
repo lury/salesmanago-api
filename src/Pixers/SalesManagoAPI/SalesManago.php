@@ -2,7 +2,6 @@
 
 namespace Pixers\SalesManagoAPI;
 
-use Pixers\SalesManagoAPI\Client;
 use Pixers\SalesManagoAPI\Service;
 
 /**
@@ -37,6 +36,20 @@ class SalesManago
     public function getContactService()
     {
         return $this->getService(Service\ContactService::class);
+    }
+
+    /**
+     * @param  string $className
+     *
+     * @return mixed
+     */
+    protected function getService($className)
+    {
+        if (!isset($this->services[$className])) {
+            $this->services[$className] = new $className($this->client);
+        }
+
+        return $this->services[$className];
     }
 
     /**
@@ -109,18 +122,5 @@ class SalesManago
     public function getTaskService()
     {
         return $this->getService(Service\TaskService::class);
-    }
-
-    /**
-     * @param  string $className
-     * @return mixed
-     */
-    protected function getService($className)
-    {
-        if (!isset($this->services[$className])) {
-            $this->services[$className] = new $className($this->client);
-        }
-
-        return $this->services[$className];
     }
 }

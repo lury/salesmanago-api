@@ -27,6 +27,7 @@ abstract class AbstractService
      *
      * @param  array $base         The array in which elements are replaced
      * @param  array $replacements The array from which elements will be extracted
+     *
      * @return array
      */
     protected static function mergeData(array $base, array $replacements)

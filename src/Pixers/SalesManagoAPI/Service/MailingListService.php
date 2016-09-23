@@ -11,12 +11,13 @@ class MailingListService extends AbstractService
      * Add a contact to mailing list.
      *
      * @param  string $email Contact e-mail address
+     *
      * @return array
      */
     public function add($email)
     {
         return $this->client->doPost('contact/optin', [
-            'email' => $email,
+          'email' => $email,
         ]);
     }
 
@@ -24,12 +25,13 @@ class MailingListService extends AbstractService
      * Remove a contact to mailing list.
      *
      * @param  string $email Contact e-mail address
+     *
      * @return array
      */
     public function remove($email)
     {
         return $this->client->doPost('contact/optout', [
-            'email' => $email,
+          'email' => $email,
         ]);
     }
 }
