@@ -29,6 +29,13 @@ class Client
 
     /**
      * Initialization.
+     *
+     * @param string $clientId
+     * @param string $endPoint
+     * @param string $apiSecret
+     * @param string $apiKey Basically a random string
+     *
+     * @throws \Pixers\SalesManagoAPI\Exception\InvalidArgumentException
      */
     public function __construct($clientId, $endPoint, $apiSecret, $apiKey)
     {
@@ -100,7 +107,9 @@ class Client
      * @param  string $method    HTTP Method
      * @param  string $apiMethod API Method
      * @param  array  $data      Request data
+     *
      * @return array
+     * @throws \Pixers\SalesManagoAPI\Exception\InvalidRequestException
      */
     protected function doRequest($method, $apiMethod, array $data = [])
     {
